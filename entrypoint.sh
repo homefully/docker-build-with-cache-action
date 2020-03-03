@@ -59,7 +59,7 @@ login_to_registry() {
   fi
 
   not_logged_in=true
-  echo "INFO: $log - Won't be able to pull from private repos, nor to push to public/private repos" >&2
+  echo "INFO: $log - If you are not allready logged into the correct docker registry (for example by using gcloud), you won't be able to pull from private repos, nor to push to public/private repos" >&2
 }
 
 pull_cached_stages() {
@@ -93,11 +93,6 @@ build_image() {
 
 push_image_and_stages() {
   if [ "$INPUT_PUSH_IMAGE_AND_STAGES" != true ]; then
-    return
-  fi
-
-  if [ "$not_logged_in" ]; then
-    echo "WARNING: Can't push when not logged in to registry" >&2
     return
   fi
 
